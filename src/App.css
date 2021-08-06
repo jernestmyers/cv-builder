@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -26,13 +26,38 @@
 
 .App-link {
   color: #61dafb;
-}
+} */
 
-@keyframes App-logo-spin {
+/* @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
+} */
+
+header,
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1,
+h2,
+h4 {
+  margin: 0;
+  padding: 0;
+}
+
+#github-icon {
+  width: 25px;
+  height: 25px;
+  padding-left: 1rem;
+}
+
+.mainDisplay {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
