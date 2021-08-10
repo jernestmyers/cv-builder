@@ -20,6 +20,13 @@ class App extends Component {
         linkedIn: "",
         aboutMe: "",
       },
+      experience: {
+        jobTitle: "",
+        company: "",
+        jobLocation: "",
+        jobStartDate: "",
+        jobEndDate: "",
+      },
       userInfo: [],
     };
   }
@@ -113,6 +120,69 @@ class App extends Component {
     // console.log(this.state.contact);
   };
 
+  handleExperienceChange = (e) => {
+    if (e.target.id === `position`) {
+      this.setState({
+        experience: {
+          jobTitle: e.target.value,
+          company: this.state.experience.company,
+          jobLocation: this.state.experience.jobLocation,
+          jobStartDate: this.state.experience.jobStartDate,
+          jobEndDate: this.state.experience.jobEndDate,
+        },
+      });
+    } else if (e.target.id === `company`) {
+      this.setState({
+        experience: {
+          jobTitle: this.state.experience.jobTitle,
+          company: e.target.value,
+          jobLocation: this.state.experience.jobLocation,
+          jobStartDate: this.state.experience.jobStartDate,
+          jobEndDate: this.state.experience.jobEndDate,
+        },
+      });
+    } else if (e.target.id === `location`) {
+      this.setState({
+        experience: {
+          jobTitle: this.state.experience.jobTitle,
+          company: this.state.experience.company,
+          jobLocation: e.target.value,
+          jobStartDate: this.state.experience.jobStartDate,
+          jobEndDate: this.state.experience.jobEndDate,
+        },
+      });
+    } else if (e.target.id === `startDate`) {
+      this.setState({
+        experience: {
+          jobTitle: this.state.experience.jobTitle,
+          company: this.state.experience.company,
+          jobLocation: this.state.experience.jobLocation,
+          jobStartDate: e.target.value,
+          jobEndDate: this.state.experience.jobEndDate,
+        },
+      });
+    } else if (e.target.id === `endDate`) {
+      this.setState({
+        experience: {
+          jobTitle: this.state.experience.jobTitle,
+          company: this.state.experience.company,
+          jobLocation: this.state.experience.jobLocation,
+          jobStartDate: this.state.experience.jobStartDate,
+          jobEndDate: e.target.value,
+        },
+      });
+    }
+    console.log(this.state.experience);
+  };
+
+  handleAddExperience = (e) => {
+    e.preventDefault();
+    this.setState({
+      userInfo: this.state.userInfo.concat(this.state.experience),
+    });
+    console.log(this.state.userInfo);
+  };
+
   render() {
     return (
       <div>
@@ -124,8 +194,11 @@ class App extends Component {
               onChange={this.handleContactChange}
             />
             <div>
-              <Experience />
-              <button>Add Experience</button>
+              <Experience
+                state={this.state.experience}
+                onChange={this.handleExperienceChange}
+              />
+              <button onClick={this.handleAddExperience}>Add Experience</button>
             </div>
             <div>
               <Education />
@@ -134,7 +207,10 @@ class App extends Component {
           </div>
           <div className="previewOfCV">
             {/* <h3>this will be the live preview</h3> */}
-            <Preview contact={this.state.contact} />
+            <Preview
+              contact={this.state.contact}
+              experience={this.state.experience}
+            />
             <button>Generate PDF</button>
           </div>
         </div>
