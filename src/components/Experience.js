@@ -1,16 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 
-// class Experience extends Component {
-//   constructor(props) {
-//     super(props);
-//   }
-
-//   render() {
 const Experience = (props) => {
   return (
     <div>
       <h2>Work Experience</h2>
-      <form>
+      <form className="experience-form">
         <div>
           <label htmlFor="position">Position</label>
           <input
@@ -58,9 +52,9 @@ const Experience = (props) => {
             type="date"
             id="endDate"
           />
-          <small>(Leave blank if presently employed here.)</small>
+          <small>(Put today's date if presently employed here.)</small>
         </div>
-        <button>Delete Experience</button>
+        {/* <button>Delete Experience</button> */}
       </form>
     </div>
   );

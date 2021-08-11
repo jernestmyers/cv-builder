@@ -5,6 +5,7 @@ import Contact from "./components/Contact";
 import Experience from "./components/Experience";
 import Education from "./components/Education";
 import Preview from "./components/Preview";
+import DisplayExperience from "./components/DisplayExperience";
 import { Component } from "react";
 
 class App extends Component {
@@ -27,7 +28,7 @@ class App extends Component {
         jobStartDate: "",
         jobEndDate: "",
       },
-      userInfo: [],
+      userExperience: [],
     };
   }
 
@@ -177,10 +178,31 @@ class App extends Component {
 
   handleAddExperience = (e) => {
     e.preventDefault();
-    this.setState({
-      userInfo: this.state.userInfo.concat(this.state.experience),
-    });
-    console.log(this.state.userInfo);
+    let isValid = true;
+    const validateExperienceForm = () => {
+      for (const info in this.state.experience) {
+        if (!this.state.experience[info]) {
+          isValid = false;
+        }
+      }
+    };
+    validateExperienceForm();
+    if (isValid) {
+      this.setState({
+        userExperience: this.state.userExperience.concat(this.state.experience),
+      });
+      this.setState({
+        experience: {
+          jobTitle: "",
+          company: "",
+          jobLocation: "",
+          jobStartDate: "",
+          jobEndDate: "",
+        },
+      });
+    }
+    console.log(this.state.userExperience);
+    console.log(this.state.userExperience.length);
   };
 
   render() {
@@ -193,7 +215,7 @@ class App extends Component {
               state={this.state.contact}
               onChange={this.handleContactChange}
             />
-            <div>
+            <div id="experience-container">
               <Experience
                 state={this.state.experience}
                 onChange={this.handleExperienceChange}
@@ -206,11 +228,11 @@ class App extends Component {
             </div>
           </div>
           <div className="previewOfCV">
-            {/* <h3>this will be the live preview</h3> */}
             <Preview
               contact={this.state.contact}
               experience={this.state.experience}
             />
+            <DisplayExperience state={this.state.userExperience} />
             <button>Generate PDF</button>
           </div>
         </div>
