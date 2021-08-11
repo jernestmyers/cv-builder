@@ -94,6 +94,9 @@ label {
 
 .end-date-instructions {
   grid-column: 2 / 3;
+  color: #e07471;
+  font-weight: bold;
+  padding-bottom: 2px;
 }
 
 button {

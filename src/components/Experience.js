@@ -57,7 +57,7 @@ const Experience = (props) => {
           />
           <small className="end-date-instructions">
             {" "}
-            (Put today's date if presently employed here.)
+            * Put today's date if presently employed here.
           </small>
         </div>
       </form>

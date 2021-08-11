@@ -7,6 +7,7 @@ import Education from "./components/Education";
 import Preview from "./components/Preview";
 import DisplayExperience from "./components/DisplayExperience";
 import { Component } from "react";
+import uniqid from "uniqid";
 
 class App extends Component {
   constructor() {
@@ -22,6 +23,7 @@ class App extends Component {
         aboutMe: "",
       },
       experience: {
+        id: uniqid(),
         jobTitle: "",
         company: "",
         jobLocation: "",
@@ -125,6 +127,7 @@ class App extends Component {
     if (e.target.id === `position`) {
       this.setState({
         experience: {
+          id: this.state.experience.id,
           jobTitle: e.target.value,
           company: this.state.experience.company,
           jobLocation: this.state.experience.jobLocation,
@@ -135,6 +138,7 @@ class App extends Component {
     } else if (e.target.id === `company`) {
       this.setState({
         experience: {
+          id: this.state.experience.id,
           jobTitle: this.state.experience.jobTitle,
           company: e.target.value,
           jobLocation: this.state.experience.jobLocation,
@@ -145,6 +149,7 @@ class App extends Component {
     } else if (e.target.id === `location`) {
       this.setState({
         experience: {
+          id: this.state.experience.id,
           jobTitle: this.state.experience.jobTitle,
           company: this.state.experience.company,
           jobLocation: e.target.value,
@@ -155,6 +160,7 @@ class App extends Component {
     } else if (e.target.id === `startDate`) {
       this.setState({
         experience: {
+          id: this.state.experience.id,
           jobTitle: this.state.experience.jobTitle,
           company: this.state.experience.company,
           jobLocation: this.state.experience.jobLocation,
@@ -165,6 +171,7 @@ class App extends Component {
     } else if (e.target.id === `endDate`) {
       this.setState({
         experience: {
+          id: this.state.experience.id,
           jobTitle: this.state.experience.jobTitle,
           company: this.state.experience.company,
           jobLocation: this.state.experience.jobLocation,
@@ -193,6 +200,7 @@ class App extends Component {
       });
       this.setState({
         experience: {
+          id: uniqid(),
           jobTitle: "",
           company: "",
           jobLocation: "",
@@ -200,9 +208,16 @@ class App extends Component {
           jobEndDate: "",
         },
       });
+      document.querySelector(`#add-exp-btn`).textContent = `Add Experience`;
     }
-    // console.log(this.state.userExperience);
+    console.log(this.state.userExperience);
     // console.log(this.state.userExperience.length);
+  };
+
+  handleEdit = (e) => {
+    e.preventDefault();
+    console.log(e.target.closest(`button`).dataset.id);
+    document.querySelector(`#add-exp-btn`).textContent = `Modify Experience`;
   };
 
   render() {
@@ -220,7 +235,9 @@ class App extends Component {
                 state={this.state.experience}
                 onChange={this.handleExperienceChange}
               />
-              <button onClick={this.handleAddExperience}>Add Experience</button>
+              <button id="add-exp-btn" onClick={this.handleAddExperience}>
+                Add Experience
+              </button>
             </div>
             <div>
               <Education />
@@ -234,7 +251,10 @@ class App extends Component {
                 contact={this.state.contact}
                 experience={this.state.experience}
               />
-              <DisplayExperience state={this.state.userExperience} />
+              <DisplayExperience
+                state={this.state.userExperience}
+                onEdit={this.handleEdit}
+              />
               <button>Generate PDF</button>
             </div>
           </div>
