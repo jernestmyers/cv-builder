@@ -10,40 +10,44 @@ class Education extends Component {
       <div>
         <h2>Education</h2>
         <form>
-          <div>
+          <div className="form-field">
             <label htmlFor="institution">Institution</label>
             <input
               type="text"
               id="position"
-              placeholder="ex: University of Florida or The Odin Project"
+              placeholder="University of Florida"
             />
           </div>
-          <div>
-            <label htmlFor="locationOfStudy">Location of Study</label>
+          <div className="form-field">
+            <label htmlFor="locationOfStudy">Location</label>
             <input
               type="text"
               id="locationOfStudy"
-              placeholder="Gainesville, FL or theodinproject.com"
+              placeholder="Gainesville, FL"
             />
           </div>
-          <div>
-            <label htmlFor="attainment">Degree/Certification Attained</label>
+          <div className="form-field">
+            <label htmlFor="attainment">Attainment</label>
             <input
               type="text"
               id="attainment"
               placeholder="B.S. Civil Engineering"
             />
           </div>
-          <div>
-            <label htmlFor="startDateEdu">From</label>
+          <div className="form-field">
+            <label htmlFor="startDateEdu">Start Date</label>
             <input type="date" id="startDateEdu" />
           </div>
-          <div>
-            <label htmlFor="endDateEdu">To</label>
-            <input type="date" id="endDateEdu" />
-            <small>(Leave blank if presently enrolled.)</small>
+          <div className="form-field end-date-field">
+            <label className="end-date-label" htmlFor="endDateEdu">
+              End Date
+            </label>
+            <input className="end-date-input" type="date" id="endDateEdu" />
+            <small className="end-date-instructions">
+              {" "}
+              (Put today's date if presently enrolled.)
+            </small>
           </div>
-          <button>Delete Education</button>
         </form>
       </div>
     );

@@ -1,8 +1,24 @@
 // import React from "react";
 import "../styles/contact-style.css";
+import { format } from "date-fns";
 
 const Preview = (props) => {
   const emailHref = `mailto:${props.contact.email}`;
+  const formatDate = (dateSelected) => {
+    if (dateSelected) {
+      const inputDate = dateSelected;
+      const today = format(new Date(), "yyyy-MM-dd");
+      const year = +inputDate.substring(0, 4);
+      const month = +inputDate.substring(5, 7) - 1;
+      const day = +inputDate.substring(8, 10);
+      if (today !== inputDate) {
+        return format(new Date(year, month, day), "MMM yyyy");
+      } else {
+        return `Present`;
+      }
+    }
+  };
+
   return (
     <div>
       <div id="contact-preview-container">
@@ -113,7 +129,8 @@ const Preview = (props) => {
         <p id="display-endDate">{props.experience.jobEndDate}</p> */}
         <div className="display-experience-container">
           <div className="date-container">
-            {props.experience.jobStartDate} to {props.experience.jobEndDate}
+            {formatDate(props.experience.jobStartDate)} to{" "}
+            {formatDate(props.experience.jobEndDate)}
           </div>
           <div className="company-info-container">
             <p className="display-position">{props.experience.jobTitle}</p>

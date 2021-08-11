@@ -1,12 +1,10 @@
-// import React, { Component } from "react";
-
 const Contact = (props) => {
   return (
-    <div>
-      <h2>Contact Information</h2>
-      <form>
-        <div>
-          <label htmlFor="fullName">Name</label>
+    <div id="contact-form-container">
+      <h2>Personal Information</h2>
+      <form id="contact-form">
+        <div className="form-field">
+          <label htmlFor="fullName">Full Name</label>
           <input
             onChange={props.onChange}
             value={props.state.fullName}
@@ -15,7 +13,7 @@ const Contact = (props) => {
             placeholder="Ada Lovelace"
           />
         </div>
-        <div>
+        <div className="form-field">
           <label htmlFor="phoneNumber">Phone Number</label>
           <input
             onChange={props.onChange}
@@ -25,7 +23,7 @@ const Contact = (props) => {
             placeholder="123-456-7890"
           />
         </div>
-        <div>
+        <div className="form-field">
           <label htmlFor="address">Mailing Address</label>
           <input
             onChange={props.onChange}
@@ -35,7 +33,7 @@ const Contact = (props) => {
             placeholder="123 Main St, Austin, TX 76543"
           />
         </div>
-        <div>
+        <div className="form-field">
           <label htmlFor="email">Email</label>
           <input
             onChange={props.onChange}
@@ -45,7 +43,7 @@ const Contact = (props) => {
             placeholder="me@email.com"
           />
         </div>
-        <div>
+        <div className="form-field">
           <label htmlFor="portfolio">Portfolio</label>
           <input
             onChange={props.onChange}
@@ -55,7 +53,7 @@ const Contact = (props) => {
             placeholder="github.com/awesome-work"
           />
         </div>
-        <div>
+        <div className="form-field">
           <label htmlFor="linkedIn">LinkedIn</label>
           <input
             onChange={props.onChange}
@@ -65,8 +63,10 @@ const Contact = (props) => {
             placeholder="linkedin.com/in/adalovelace"
           />
         </div>
-        <div>
-          <label htmlFor="aboutMe">Brief Description</label>
+        <div className="form-field">
+          <label id="about-me-label" htmlFor="aboutMe">
+            Brief Description
+          </label>
           <textarea
             onChange={props.onChange}
             value={props.state.aboutMe}

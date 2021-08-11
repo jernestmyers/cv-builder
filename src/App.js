@@ -173,7 +173,7 @@ class App extends Component {
         },
       });
     }
-    console.log(this.state.experience);
+    // console.log(this.state.experience);
   };
 
   handleAddExperience = (e) => {
@@ -201,8 +201,8 @@ class App extends Component {
         },
       });
     }
-    console.log(this.state.userExperience);
-    console.log(this.state.userExperience.length);
+    // console.log(this.state.userExperience);
+    // console.log(this.state.userExperience.length);
   };
 
   render() {
@@ -227,13 +227,16 @@ class App extends Component {
               <button>Add Education</button>
             </div>
           </div>
-          <div className="previewOfCV">
-            <Preview
-              contact={this.state.contact}
-              experience={this.state.experience}
-            />
-            <DisplayExperience state={this.state.userExperience} />
-            <button>Generate PDF</button>
+          <div>
+            <h2>Live Preview</h2>
+            <div className="previewOfCV">
+              <Preview
+                contact={this.state.contact}
+                experience={this.state.experience}
+              />
+              <DisplayExperience state={this.state.userExperience} />
+              <button>Generate PDF</button>
+            </div>
           </div>
         </div>
         <Footer />

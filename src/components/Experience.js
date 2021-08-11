@@ -5,7 +5,7 @@ const Experience = (props) => {
     <div>
       <h2>Work Experience</h2>
       <form className="experience-form">
-        <div>
+        <div className="form-field">
           <label htmlFor="position">Position</label>
           <input
             onChange={props.onChange}
@@ -15,7 +15,7 @@ const Experience = (props) => {
             placeholder="Software Engineer"
           />
         </div>
-        <div>
+        <div className="form-field">
           <label htmlFor="company">Company</label>
           <input
             onChange={props.onChange}
@@ -25,7 +25,7 @@ const Experience = (props) => {
             placeholder="Best Company Ever"
           />
         </div>
-        <div>
+        <div className="form-field">
           <label htmlFor="location">Location</label>
           <input
             onChange={props.onChange}
@@ -35,8 +35,8 @@ const Experience = (props) => {
             placeholder="Austin, TX"
           />
         </div>
-        <div>
-          <label htmlFor="startDate">From</label>
+        <div className="form-field">
+          <label htmlFor="startDate">Start Date</label>
           <input
             onChange={props.onChange}
             value={props.state.jobStartDate}
@@ -44,17 +44,22 @@ const Experience = (props) => {
             id="startDate"
           />
         </div>
-        <div>
-          <label htmlFor="endDate">To</label>
+        <div className="form-field end-date-field">
+          <label className="end-date-label" htmlFor="endDate">
+            End Date
+          </label>
           <input
+            className="end-date-input"
             onChange={props.onChange}
             value={props.state.jobEndDate}
             type="date"
             id="endDate"
           />
-          <small> (Put today's date if presently employed here.)</small>
+          <small className="end-date-instructions">
+            {" "}
+            (Put today's date if presently employed here.)
+          </small>
         </div>
-        {/* <button>Delete Experience</button> */}
       </form>
     </div>
   );
