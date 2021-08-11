@@ -1,15 +1,21 @@
+import "../styles/experience-style.css";
+
 const DisplayExperience = (props) => {
   console.log(props);
   return (
-    <div id="experience-preview-container">
+    <div id="experience-static-container">
       {props.state.map((job, index) => {
         return (
-          <div key={index}>
-            <p id="display-position">{job.jobTitle}</p>
-            <p id="display-company">{job.company}</p>
-            <p id="display-location">{job.jobLocation}</p>
-            <p id="display-startDate">{job.jobStartDate}</p>
-            <p id="display-endDate">{job.jobEndDate}</p>
+          <div className="display-experience-container" key={index}>
+            <div className="date-container">
+              {job.jobStartDate} to {job.jobEndDate}
+            </div>
+            <div className="company-info-container">
+              <p className="display-position">{job.jobTitle}</p>
+              <p className="display-company-info">
+                {job.company} | {job.jobLocation}
+              </p>
+            </div>
           </div>
         );
       })}

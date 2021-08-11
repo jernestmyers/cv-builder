@@ -1,0 +1,10 @@
+.display-experience-container {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.display-position {
+  font-weight: bold;
+}

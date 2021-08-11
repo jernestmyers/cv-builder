@@ -106,11 +106,22 @@ const Preview = (props) => {
       </div>
       <div id="experience-preview-container">
         <h3 id="experience-header">Professional Experience</h3>
-        <p id="display-position">{props.experience.jobTitle}</p>
+        {/* <p id="display-position">{props.experience.jobTitle}</p>
         <p id="display-company">{props.experience.company}</p>
         <p id="display-location">{props.experience.jobLocation}</p>
         <p id="display-startDate">{props.experience.jobStartDate}</p>
-        <p id="display-endDate">{props.experience.jobEndDate}</p>
+        <p id="display-endDate">{props.experience.jobEndDate}</p> */}
+        <div className="display-experience-container">
+          <div className="date-container">
+            {props.experience.jobStartDate} to {props.experience.jobEndDate}
+          </div>
+          <div className="company-info-container">
+            <p className="display-position">{props.experience.jobTitle}</p>
+            <p className="display-company-info">
+              {props.experience.company} | {props.experience.jobLocation}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

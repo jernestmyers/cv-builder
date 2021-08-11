@@ -52,7 +52,7 @@ const Experience = (props) => {
             type="date"
             id="endDate"
           />
-          <small>(Put today's date if presently employed here.)</small>
+          <small> (Put today's date if presently employed here.)</small>
         </div>
         {/* <button>Delete Experience</button> */}
       </form>

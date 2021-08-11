@@ -7,6 +7,7 @@ footer {
 
 h1,
 h2,
+h3,
 h4 {
   margin: 0;
   padding: 0;
@@ -25,4 +26,5 @@ h4 {
 
 .previewOfCV {
   border: 1px solid black;
+  padding: 0px 5px;
 }
