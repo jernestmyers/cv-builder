@@ -1,5 +1,7 @@
 import "../styles/contact-style.css";
 import { format } from "date-fns";
+import DisplayExperience from "./DisplayExperience";
+import DisplayEducation from "./DisplayEducation";
 
 const Preview = (props) => {
   const emailHref = `mailto:${props.contact.email}`;
@@ -145,21 +147,32 @@ const Preview = (props) => {
             </p>
           </div>
         </div>
+        <DisplayExperience
+          state={props.userExperience}
+          handleModifications={props.handleModifications}
+        />
       </div>
       <div id="edu-preview-container">
         <h3 id="edu-header">Education</h3>
-        <div className="display-experience-container">
+        <div className="display-education-container">
           <div className="date-container">
             {formatDate(props.education.eduStartDate)} to{" "}
             {formatDate(props.education.eduEndDate)}
           </div>
-          <div className="company-info-container">
-            <p className="display-company-info">
-              {props.education.institution} | {props.education.eduLocation}
+          <div>
+            <p className="display-institution-info">
+              <span className="display-institution">
+                {props.education.institution}
+              </span>{" "}
+              | {props.education.eduLocation}
             </p>
-            <p className="display-position">{props.education.attainment}</p>
+            <p>{props.education.attainment}</p>
           </div>
         </div>
+        <DisplayEducation
+          state={props.userEducation}
+          handleModifications={props.handleModifications}
+        />
       </div>
     </div>
   );

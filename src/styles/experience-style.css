@@ -1,11 +1,13 @@
-.display-experience-container {
+.display-experience-container,
+.display-education-container {
   display: grid;
   grid-template-columns: 0.5fr 1fr 0.1fr;
   margin-top: 1rem;
   margin-bottom: 2rem;
 }
 
-.display-position {
+.display-position,
+.display-institution {
   font-weight: bold;
 }
 

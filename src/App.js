@@ -5,7 +5,6 @@ import Contact from "./components/Contact";
 import Experience from "./components/Experience";
 import Education from "./components/Education";
 import Preview from "./components/Preview";
-import DisplayExperience from "./components/DisplayExperience";
 import { Component } from "react";
 import uniqid from "uniqid";
 
@@ -247,7 +246,7 @@ class App extends Component {
         },
       });
     }
-    console.log(this.state.education);
+    // console.log(this.state.education);
   };
 
   handleAddExperience = (e) => {
@@ -312,7 +311,7 @@ class App extends Component {
     e.preventDefault();
     const selectedBtnClassNames = e.target.closest(`button`).className;
     const selectedID = e.target.closest(`button`).dataset.id;
-    console.log(selectedBtnClassNames);
+    // console.log(selectedBtnClassNames);
     if (selectedBtnClassNames.includes(`experience`)) {
       // handles editing items in CV
       if (selectedBtnClassNames.includes(`edit`)) {
@@ -337,6 +336,34 @@ class App extends Component {
         userExperience: this.state.userExperience.filter((job) => {
           if (job.id !== selectedID) {
             return job;
+          }
+        }),
+      });
+    }
+    if (selectedBtnClassNames.includes(`education`)) {
+      // handles editing items in CV
+      if (selectedBtnClassNames.includes(`edit`)) {
+        document.querySelector(`#add-edu-btn`).textContent = `Confirm Edits`;
+        this.state.userEducation.filter((edu) => {
+          if (edu.id === selectedID) {
+            this.setState({
+              education: {
+                id: edu.id,
+                institution: edu.institution,
+                eduLocation: edu.eduLocation,
+                attainment: edu.attainment,
+                eduStartDate: edu.eduStartDate,
+                eduEndDate: edu.eduEndDate,
+              },
+            });
+          }
+        });
+      }
+      // handles deleting items from CV
+      this.setState({
+        userEducation: this.state.userEducation.filter((edu) => {
+          if (edu.id !== selectedID) {
+            return edu;
           }
         }),
       });
@@ -367,7 +394,9 @@ class App extends Component {
                 state={this.state.education}
                 onChange={this.handleEducationChange}
               />
-              <button id="add-edu-btn">Add Education</button>
+              <button id="add-edu-btn" onClick={this.handleAddEducation}>
+                Add Education
+              </button>
             </div>
           </div>
           <div>
@@ -377,12 +406,11 @@ class App extends Component {
                 contact={this.state.contact}
                 experience={this.state.experience}
                 education={this.state.education}
-              />
-              <DisplayExperience
-                state={this.state.userExperience}
+                userExperience={this.state.userExperience}
+                userEducation={this.state.userEducation}
                 handleModifications={this.handleModifications}
               />
-              <button>Generate PDF</button>
+              <button id="generate-pdf">Generate PDF</button>
             </div>
           </div>
         </div>
