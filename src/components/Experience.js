@@ -46,7 +46,7 @@ const Experience = (props) => {
         </div>
         <div className="form-field end-date-field">
           <label className="end-date-label" htmlFor="endDate">
-            End Date
+            End Date<span className="asterik">*</span>
           </label>
           <input
             className="end-date-input"

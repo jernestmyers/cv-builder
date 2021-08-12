@@ -222,9 +222,7 @@ class App extends Component {
     if (selectedBtnClassNames.includes(`experience`)) {
       // handles editing items in CV
       if (selectedBtnClassNames.includes(`edit`)) {
-        document.querySelector(
-          `#add-exp-btn`
-        ).textContent = `Modify Experience`;
+        document.querySelector(`#add-exp-btn`).textContent = `Confirm Edits`;
         this.state.userExperience.filter((job) => {
           if (job.id === selectedID) {
             this.setState({

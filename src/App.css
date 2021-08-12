@@ -62,7 +62,6 @@ h4 {
   margin-top: 5px;
   padding: 0px 5px;
   box-shadow: 5px 5px 10px #1c1c1c;
-  /* border-radius: 10px; */
 }
 
 .inputFields {
@@ -133,4 +132,10 @@ textarea {
 
 input {
   height: 24px;
+}
+
+.asterik {
+  color: #e07471;
+  font-weight: bold;
+  padding-left: 1px;
 }
