@@ -1,57 +1,68 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Education extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div>
-        <h2>Education</h2>
-        <form>
-          <div className="form-field">
-            <label htmlFor="institution">Institution</label>
-            <input
-              type="text"
-              id="position"
-              placeholder="University of Florida"
-            />
-          </div>
-          <div className="form-field">
-            <label htmlFor="locationOfStudy">Location</label>
-            <input
-              type="text"
-              id="locationOfStudy"
-              placeholder="Gainesville, FL"
-            />
-          </div>
-          <div className="form-field">
-            <label htmlFor="attainment">Attainment</label>
-            <input
-              type="text"
-              id="attainment"
-              placeholder="B.S. Civil Engineering"
-            />
-          </div>
-          <div className="form-field">
-            <label htmlFor="startDateEdu">Start Date</label>
-            <input type="date" id="startDateEdu" />
-          </div>
-          <div className="form-field end-date-field">
-            <label className="end-date-label" htmlFor="endDateEdu">
-              End Date
-            </label>
-            <input className="end-date-input" type="date" id="endDateEdu" />
-            <small className="end-date-instructions">
-              {" "}
-              (Put today's date if presently enrolled.)
-            </small>
-          </div>
-        </form>
-      </div>
-    );
-  }
-}
+const Education = (props) => {
+  return (
+    <div>
+      <h2>Education</h2>
+      <form>
+        <div className="form-field">
+          <label htmlFor="institution">Institution</label>
+          <input
+            onChange={props.onChange}
+            value={props.state.institution}
+            type="text"
+            id="institution"
+            placeholder="University of Florida"
+          />
+        </div>
+        <div className="form-field">
+          <label htmlFor="eduLocation">Location</label>
+          <input
+            onChange={props.onChange}
+            value={props.state.eduLocation}
+            type="text"
+            id="eduLocation"
+            placeholder="Gainesville, FL"
+          />
+        </div>
+        <div className="form-field">
+          <label htmlFor="attainment">Attainment</label>
+          <input
+            onChange={props.onChange}
+            value={props.state.attainment}
+            type="text"
+            id="attainment"
+            placeholder="B.S. Civil Engineering"
+          />
+        </div>
+        <div className="form-field">
+          <label htmlFor="eduStartDate">Start Date</label>
+          <input
+            onChange={props.onChange}
+            value={props.state.eduStartDate}
+            type="date"
+            id="eduStartDate"
+          />
+        </div>
+        <div className="form-field end-date-field">
+          <label className="end-date-label" htmlFor="eduEndDate">
+            End Date<span className="asterik">*</span>
+          </label>
+          <input
+            onChange={props.onChange}
+            value={props.state.eduEndDate}
+            className="end-date-input"
+            type="date"
+            id="eduEndDate"
+          />
+          <small className="end-date-instructions">
+            {" "}
+            * Put today's date if presently enrolled here.
+          </small>
+        </div>
+      </form>
+    </div>
+  );
+};
 
 export default Education;

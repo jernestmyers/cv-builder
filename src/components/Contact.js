@@ -20,17 +20,7 @@ const Contact = (props) => {
             value={props.state.phoneNumber}
             type="tel"
             id="phoneNumber"
-            placeholder="123-456-7890"
-          />
-        </div>
-        <div className="form-field">
-          <label htmlFor="address">Mailing Address</label>
-          <input
-            onChange={props.onChange}
-            value={props.state.address}
-            type="text"
-            id="address"
-            placeholder="123 Main St, Austin, TX 76543"
+            placeholder="(123) 456-7890"
           />
         </div>
         <div className="form-field">
@@ -41,6 +31,16 @@ const Contact = (props) => {
             type="email"
             id="email"
             placeholder="me@email.com"
+          />
+        </div>
+        <div className="form-field">
+          <label htmlFor="address">Mailing Address</label>
+          <input
+            onChange={props.onChange}
+            value={props.state.address}
+            type="text"
+            id="address"
+            placeholder="123 Main St, Austin, TX 76543"
           />
         </div>
         <div className="form-field">

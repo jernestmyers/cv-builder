@@ -31,6 +31,15 @@ class App extends Component {
         jobEndDate: "",
       },
       userExperience: [],
+      education: {
+        id: uniqid(),
+        institution: "",
+        eduLocation: "",
+        attainment: "",
+        eduStartDate: "",
+        eduEndDate: "",
+      },
+      userEducation: [],
     };
   }
 
@@ -120,7 +129,6 @@ class App extends Component {
         },
       });
     }
-    // console.log(this.state.contact);
   };
 
   handleExperienceChange = (e) => {
@@ -180,7 +188,66 @@ class App extends Component {
         },
       });
     }
-    // console.log(this.state.experience);
+  };
+
+  handleEducationChange = (e) => {
+    if (e.target.id === `institution`) {
+      this.setState({
+        education: {
+          id: this.state.education.id,
+          institution: e.target.value,
+          eduLocation: this.state.education.eduLocation,
+          attainment: this.state.education.attainment,
+          eduStartDate: this.state.education.eduStartDate,
+          eduEndDate: this.state.education.eduEndDate,
+        },
+      });
+    } else if (e.target.id === `eduLocation`) {
+      this.setState({
+        education: {
+          id: this.state.education.id,
+          institution: this.state.education.institution,
+          eduLocation: e.target.value,
+          attainment: this.state.education.attainment,
+          eduStartDate: this.state.education.eduStartDate,
+          eduEndDate: this.state.education.eduEndDate,
+        },
+      });
+    } else if (e.target.id === `attainment`) {
+      this.setState({
+        education: {
+          id: this.state.education.id,
+          institution: this.state.education.institution,
+          eduLocation: this.state.education.eduLocation,
+          attainment: e.target.value,
+          eduStartDate: this.state.education.eduStartDate,
+          eduEndDate: this.state.education.eduEndDate,
+        },
+      });
+    } else if (e.target.id === `eduStartDate`) {
+      this.setState({
+        education: {
+          id: this.state.education.id,
+          institution: this.state.education.institution,
+          eduLocation: this.state.education.eduLocation,
+          attainment: this.state.education.attainment,
+          eduStartDate: e.target.value,
+          eduEndDate: this.state.education.eduEndDate,
+        },
+      });
+    } else if (e.target.id === `eduEndDate`) {
+      this.setState({
+        education: {
+          id: this.state.education.id,
+          institution: this.state.education.institution,
+          eduLocation: this.state.education.eduLocation,
+          attainment: this.state.education.attainment,
+          eduStartDate: this.state.education.eduStartDate,
+          eduEndDate: e.target.value,
+        },
+      });
+    }
+    console.log(this.state.education);
   };
 
   handleAddExperience = (e) => {
@@ -210,8 +277,35 @@ class App extends Component {
       });
       document.querySelector(`#add-exp-btn`).textContent = `Add Experience`;
     }
-    console.log(this.state.userExperience);
-    // console.log(this.state.userExperience.length);
+  };
+
+  handleAddEducation = (e) => {
+    e.preventDefault();
+    let isValid = true;
+    const validateForm = () => {
+      for (const info in this.state.education) {
+        if (!this.state.education[info]) {
+          isValid = false;
+        }
+      }
+    };
+    validateForm();
+    if (isValid) {
+      this.setState({
+        userEducation: this.state.userEducation.concat(this.state.education),
+      });
+      this.setState({
+        education: {
+          id: uniqid(),
+          institution: "",
+          eduLocation: "",
+          attainment: "",
+          eduStartDate: "",
+          eduEndDate: "",
+        },
+      });
+      document.querySelector(`#add-edu-btn`).textContent = `Add Education`;
+    }
   };
 
   handleModifications = (e) => {
@@ -269,8 +363,11 @@ class App extends Component {
               </button>
             </div>
             <div>
-              <Education />
-              <button>Add Education</button>
+              <Education
+                state={this.state.education}
+                onChange={this.handleEducationChange}
+              />
+              <button id="add-edu-btn">Add Education</button>
             </div>
           </div>
           <div>
@@ -279,6 +376,7 @@ class App extends Component {
               <Preview
                 contact={this.state.contact}
                 experience={this.state.experience}
+                education={this.state.education}
               />
               <DisplayExperience
                 state={this.state.userExperience}

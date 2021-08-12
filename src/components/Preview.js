@@ -1,9 +1,20 @@
-// import React from "react";
 import "../styles/contact-style.css";
 import { format } from "date-fns";
 
 const Preview = (props) => {
   const emailHref = `mailto:${props.contact.email}`;
+
+  // formats phone number for use as href
+  const reg = /^\d+$/;
+  const phoneNumber = [];
+  Array.from(props.contact.phoneNumber).map((character) => {
+    if (reg.test(character)) {
+      phoneNumber.push(character);
+    }
+  });
+  const formattedPhoneNumber = phoneNumber.toString().replaceAll(`,`, ``);
+  const phoneHref = `tel:${formattedPhoneNumber}`;
+
   const formatDate = (dateSelected) => {
     if (dateSelected) {
       const inputDate = dateSelected;
@@ -36,7 +47,7 @@ const Preview = (props) => {
           >
             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
           </svg>
-          {props.contact.phoneNumber}
+          <a href={phoneHref}>{props.contact.phoneNumber}</a>
         </p>
         <p id="display-address">
           <svg
@@ -122,11 +133,6 @@ const Preview = (props) => {
       </div>
       <div id="experience-preview-container">
         <h3 id="experience-header">Professional Experience</h3>
-        {/* <p id="display-position">{props.experience.jobTitle}</p>
-        <p id="display-company">{props.experience.company}</p>
-        <p id="display-location">{props.experience.jobLocation}</p>
-        <p id="display-startDate">{props.experience.jobStartDate}</p>
-        <p id="display-endDate">{props.experience.jobEndDate}</p> */}
         <div className="display-experience-container">
           <div className="date-container">
             {formatDate(props.experience.jobStartDate)} to{" "}
@@ -137,6 +143,21 @@ const Preview = (props) => {
             <p className="display-company-info">
               {props.experience.company} | {props.experience.jobLocation}
             </p>
+          </div>
+        </div>
+      </div>
+      <div id="edu-preview-container">
+        <h3 id="edu-header">Education</h3>
+        <div className="display-experience-container">
+          <div className="date-container">
+            {formatDate(props.education.eduStartDate)} to{" "}
+            {formatDate(props.education.eduEndDate)}
+          </div>
+          <div className="company-info-container">
+            <p className="display-company-info">
+              {props.education.institution} | {props.education.eduLocation}
+            </p>
+            <p className="display-position">{props.education.attainment}</p>
           </div>
         </div>
       </div>

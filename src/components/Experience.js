@@ -64,6 +64,5 @@ const Experience = (props) => {
     </div>
   );
 };
-// }
 
 export default Experience;
