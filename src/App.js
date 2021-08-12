@@ -214,10 +214,41 @@ class App extends Component {
     // console.log(this.state.userExperience.length);
   };
 
-  handleEdit = (e) => {
+  handleModifications = (e) => {
     e.preventDefault();
-    console.log(e.target.closest(`button`).dataset.id);
-    document.querySelector(`#add-exp-btn`).textContent = `Modify Experience`;
+    const selectedBtnClassNames = e.target.closest(`button`).className;
+    const selectedID = e.target.closest(`button`).dataset.id;
+    console.log(selectedBtnClassNames);
+    if (selectedBtnClassNames.includes(`experience`)) {
+      // handles editing items in CV
+      if (selectedBtnClassNames.includes(`edit`)) {
+        document.querySelector(
+          `#add-exp-btn`
+        ).textContent = `Modify Experience`;
+        this.state.userExperience.filter((job) => {
+          if (job.id === selectedID) {
+            this.setState({
+              experience: {
+                id: job.id,
+                jobTitle: job.jobTitle,
+                company: job.company,
+                jobLocation: job.jobLocation,
+                jobStartDate: job.jobStartDate,
+                jobEndDate: job.jobEndDate,
+              },
+            });
+          }
+        });
+      }
+      // handles deleting items from CV
+      this.setState({
+        userExperience: this.state.userExperience.filter((job) => {
+          if (job.id !== selectedID) {
+            return job;
+          }
+        }),
+      });
+    }
   };
 
   render() {
@@ -253,7 +284,7 @@ class App extends Component {
               />
               <DisplayExperience
                 state={this.state.userExperience}
-                onEdit={this.handleEdit}
+                handleModifications={this.handleModifications}
               />
               <button>Generate PDF</button>
             </div>

@@ -33,9 +33,9 @@ const DisplayExperience = (props) => {
             </div>
             <div className="btns-container">
               <button
-                className="modify-btns edit-btn"
+                className="modify-btns edit-btn edit-experience"
                 data-id={job.id}
-                onClick={props.onEdit}
+                onClick={props.handleModifications}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +53,11 @@ const DisplayExperience = (props) => {
                   <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
                 </svg>
               </button>
-              <button className="modify-btns" data-id={job.id}>
+              <button
+                className="modify-btns del-experience"
+                data-id={job.id}
+                onClick={props.handleModifications}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
