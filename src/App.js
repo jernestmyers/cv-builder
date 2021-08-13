@@ -7,6 +7,15 @@ import Education from "./components/Education";
 import Preview from "./components/Preview";
 import { Component } from "react";
 import uniqid from "uniqid";
+import { compareDesc } from "date-fns";
+
+function createDateObject(dateSelected) {
+  const inputDate = dateSelected;
+  const year = +inputDate.substring(0, 4);
+  const month = +inputDate.substring(5, 7) - 1;
+  const day = +inputDate.substring(8, 10);
+  return new Date(year, month, day);
+}
 
 class App extends Component {
   constructor() {
@@ -246,7 +255,6 @@ class App extends Component {
         },
       });
     }
-    // console.log(this.state.education);
   };
 
   handleAddExperience = (e) => {
@@ -260,10 +268,24 @@ class App extends Component {
       }
     };
     validateExperienceForm();
+
     if (isValid) {
       this.setState({
-        userExperience: this.state.userExperience.concat(this.state.experience),
+        // userExperience: this.state.userExperience.concat(this.state.experience),
+        userExperience: this.state.userExperience
+          .concat(this.state.experience)
+          .map((job) => {
+            return job;
+          })
+          .sort((a, b) => {
+            return compareDesc(
+              createDateObject(a.jobEndDate),
+              createDateObject(b.jobEndDate)
+            );
+          }),
       });
+      // console.log(this.state.userExperience);
+
       this.setState({
         experience: {
           id: uniqid(),
@@ -291,8 +313,20 @@ class App extends Component {
     validateForm();
     if (isValid) {
       this.setState({
-        userEducation: this.state.userEducation.concat(this.state.education),
+        // userEducation: this.state.userEducation.concat(this.state.education),
+        userEducation: this.state.userEducation
+          .concat(this.state.education)
+          .map((edu) => {
+            return edu;
+          })
+          .sort((a, b) => {
+            return compareDesc(
+              createDateObject(a.eduEndDate),
+              createDateObject(b.eduEndDate)
+            );
+          }),
       });
+
       this.setState({
         education: {
           id: uniqid(),
@@ -311,9 +345,8 @@ class App extends Component {
     e.preventDefault();
     const selectedBtnClassNames = e.target.closest(`button`).className;
     const selectedID = e.target.closest(`button`).dataset.id;
-    // console.log(selectedBtnClassNames);
+    // handles editing and deleting experience objects in CV
     if (selectedBtnClassNames.includes(`experience`)) {
-      // handles editing items in CV
       if (selectedBtnClassNames.includes(`edit`)) {
         document.querySelector(`#add-exp-btn`).textContent = `Confirm Edits`;
         this.state.userExperience.filter((job) => {
@@ -331,7 +364,6 @@ class App extends Component {
           }
         });
       }
-      // handles deleting items from CV
       this.setState({
         userExperience: this.state.userExperience.filter((job) => {
           if (job.id !== selectedID) {
@@ -340,8 +372,8 @@ class App extends Component {
         }),
       });
     }
+    // handles editing and deleting education objects in CV
     if (selectedBtnClassNames.includes(`education`)) {
-      // handles editing items in CV
       if (selectedBtnClassNames.includes(`edit`)) {
         document.querySelector(`#add-edu-btn`).textContent = `Confirm Edits`;
         this.state.userEducation.filter((edu) => {
@@ -359,7 +391,6 @@ class App extends Component {
           }
         });
       }
-      // handles deleting items from CV
       this.setState({
         userEducation: this.state.userEducation.filter((edu) => {
           if (edu.id !== selectedID) {
