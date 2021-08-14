@@ -5,9 +5,13 @@ import Contact from "./components/Contact";
 import Experience from "./components/Experience";
 import Education from "./components/Education";
 import Preview from "./components/Preview";
-import { Component } from "react";
+import RenderPDF from "./components/RenderPDF";
+import React, { Component } from "react";
 import uniqid from "uniqid";
 import { compareDesc } from "date-fns";
+// import ReactDOM from "react-dom";
+// import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
+// import { PDFViewer } from "@react-pdf/renderer";
 
 function createDateObject(dateSelected) {
   const inputDate = dateSelected;
@@ -441,7 +445,13 @@ class App extends Component {
                 userEducation={this.state.userEducation}
                 handleModifications={this.handleModifications}
               />
-              <button id="generate-pdf">Generate PDF</button>
+              {/* <RenderPDF
+                state={this.state}
+                handleModifications={this.handleModifications}
+              ></RenderPDF> */}
+              {/* <button id="generate-pdf" onClick={renderPdfOnClick}>
+                Generate PDF
+              </button> */}
             </div>
           </div>
         </div>
@@ -450,5 +460,48 @@ class App extends Component {
     );
   }
 }
+
+// // const RenderPDF = () => {
+// // Create styles
+// const styles = StyleSheet.create({
+//   page: {
+//     flexDirection: "row",
+//     backgroundColor: "#E4E4E4",
+//   },
+//   section: {
+//     margin: 10,
+//     padding: 10,
+//     flexGrow: 1,
+//   },
+// });
+
+// // Create Document Component
+// const MyDocument = () => {
+//   console.log(`click`);
+//   return (
+//     <Document>
+//       <Page size="A4" style={styles.page}>
+//         <View style={styles.section}>
+//           {/* <Text>Section #1</Text> */}
+//           {/* <Contact></Contact> */}
+//         </View>
+//         <View style={styles.section}>
+//           <Text>Section #2</Text>
+//         </View>
+//       </Page>
+//     </Document>
+//   );
+// };
+
+// const ViewPDF = () => (
+//   <PDFViewer>
+//     <MyDocument />
+//   </PDFViewer>
+// );
+
+// const renderPdfOnClick = () => {
+//   ReactDOM.render(<ViewPDF />, document.getElementById("root"));
+// };
+// // };
 
 export default App;
