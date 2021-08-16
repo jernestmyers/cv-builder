@@ -3,12 +3,28 @@ import { format } from "date-fns";
 import DisplayExperience from "./DisplayExperience";
 import DisplayEducation from "./DisplayEducation";
 
+const formatDate = (dateSelected) => {
+  if (dateSelected) {
+    const inputDate = dateSelected;
+    const today = format(new Date(), "yyyy-MM-dd");
+    const year = +inputDate.substring(0, 4);
+    const month = +inputDate.substring(5, 7) - 1;
+    const day = +inputDate.substring(8, 10);
+    if (today !== inputDate) {
+      return format(new Date(year, month, day), "MMM yyyy");
+    } else {
+      return `Present`;
+    }
+  }
+};
+
 const Preview = (props) => {
   const emailHref = `mailto:${props.contact.email}`;
 
   // formats phone number for use as href
   const reg = /^\d+$/;
   const phoneNumber = [];
+  // eslint-disable-next-line
   Array.from(props.contact.phoneNumber).map((character) => {
     if (reg.test(character)) {
       phoneNumber.push(character);
@@ -17,20 +33,20 @@ const Preview = (props) => {
   const formattedPhoneNumber = phoneNumber.toString().replaceAll(`,`, ``);
   const phoneHref = `tel:${formattedPhoneNumber}`;
 
-  const formatDate = (dateSelected) => {
-    if (dateSelected) {
-      const inputDate = dateSelected;
-      const today = format(new Date(), "yyyy-MM-dd");
-      const year = +inputDate.substring(0, 4);
-      const month = +inputDate.substring(5, 7) - 1;
-      const day = +inputDate.substring(8, 10);
-      if (today !== inputDate) {
-        return format(new Date(year, month, day), "MMM yyyy");
-      } else {
-        return `Present`;
-      }
-    }
-  };
+  // const formatDate = (dateSelected) => {
+  //   if (dateSelected) {
+  //     const inputDate = dateSelected;
+  //     const today = format(new Date(), "yyyy-MM-dd");
+  //     const year = +inputDate.substring(0, 4);
+  //     const month = +inputDate.substring(5, 7) - 1;
+  //     const day = +inputDate.substring(8, 10);
+  //     if (today !== inputDate) {
+  //       return format(new Date(year, month, day), "MMM yyyy");
+  //     } else {
+  //       return `Present`;
+  //     }
+  //   }
+  // };
 
   return (
     <div>
@@ -135,7 +151,7 @@ const Preview = (props) => {
       </div>
       <div id="experience-preview-container">
         <h3 id="experience-header">Professional Experience</h3>
-        <div className="display-experience-container">
+        {/* <div className="display-experience-container">
           <div className="date-container">
             {formatDate(props.experience.jobStartDate)} to{" "}
             {formatDate(props.experience.jobEndDate)}
@@ -146,7 +162,8 @@ const Preview = (props) => {
               {props.experience.company} | {props.experience.jobLocation}
             </p>
           </div>
-        </div>
+        </div> */}
+        <LivePreviewExperience state={props.experience}></LivePreviewExperience>
         <DisplayExperience
           state={props.userExperience}
           handleModifications={props.handleModifications}
@@ -154,7 +171,7 @@ const Preview = (props) => {
       </div>
       <div id="edu-preview-container">
         <h3 id="edu-header">Education</h3>
-        <div className="display-education-container">
+        {/* <div className="display-education-container">
           <div className="date-container">
             {formatDate(props.education.eduStartDate)} to{" "}
             {formatDate(props.education.eduEndDate)}
@@ -168,7 +185,8 @@ const Preview = (props) => {
             </p>
             <p>{props.education.attainment}</p>
           </div>
-        </div>
+        </div> */}
+        <LivePreviewEducation state={props.education}></LivePreviewEducation>
         <DisplayEducation
           state={props.userEducation}
           handleModifications={props.handleModifications}
@@ -176,6 +194,63 @@ const Preview = (props) => {
       </div>
     </div>
   );
+};
+
+const LivePreviewExperience = (props) => {
+  if (
+    props.state.jobTitle ||
+    props.state.company ||
+    props.state.jobLocation ||
+    props.state.jobStartDate ||
+    props.state.jobEndDate
+  ) {
+    return (
+      <div className="display-experience-container">
+        <div className="date-container">
+          {formatDate(props.state.jobStartDate)} to{" "}
+          {formatDate(props.state.jobEndDate)}
+        </div>
+        <div className="company-info-container">
+          <p className="display-position">{props.state.jobTitle}</p>
+          <p className="display-company-info">
+            {props.state.company} | {props.state.jobLocation}
+          </p>
+        </div>
+      </div>
+    );
+  } else {
+    return <div></div>;
+  }
+};
+
+const LivePreviewEducation = (props) => {
+  if (
+    props.state.eduLocation ||
+    props.state.eduStartDate ||
+    props.state.eduEndDate ||
+    props.state.institution ||
+    props.state.attainment
+  ) {
+    return (
+      <div className="display-education-container">
+        <div className="date-container">
+          {formatDate(props.state.eduStartDate)} to{" "}
+          {formatDate(props.state.eduEndDate)}
+        </div>
+        <div>
+          <p className="display-institution-info">
+            <span className="display-institution">
+              {props.state.institution}
+            </span>{" "}
+            | {props.state.eduLocation}
+          </p>
+          <p>{props.state.attainment}</p>
+        </div>
+      </div>
+    );
+  } else {
+    return <div></div>;
+  }
 };
 
 export default Preview;

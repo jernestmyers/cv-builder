@@ -5,13 +5,10 @@ import Contact from "./components/Contact";
 import Experience from "./components/Experience";
 import Education from "./components/Education";
 import Preview from "./components/Preview";
-import RenderPDF from "./components/RenderPDF";
+// import RenderPDF from "./components/RenderPDF";
 import React, { Component } from "react";
 import uniqid from "uniqid";
 import { compareDesc } from "date-fns";
-// import ReactDOM from "react-dom";
-// import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
-// import { PDFViewer } from "@react-pdf/renderer";
 
 function createDateObject(dateSelected) {
   const inputDate = dateSelected;
@@ -353,6 +350,7 @@ class App extends Component {
     if (selectedBtnClassNames.includes(`experience`)) {
       if (selectedBtnClassNames.includes(`edit`)) {
         document.querySelector(`#add-exp-btn`).textContent = `Confirm Edits`;
+        // eslint-disable-next-line
         this.state.userExperience.filter((job) => {
           if (job.id === selectedID) {
             this.setState({
@@ -369,6 +367,7 @@ class App extends Component {
         });
       }
       this.setState({
+        // eslint-disable-next-line
         userExperience: this.state.userExperience.filter((job) => {
           if (job.id !== selectedID) {
             return job;
@@ -380,6 +379,7 @@ class App extends Component {
     if (selectedBtnClassNames.includes(`education`)) {
       if (selectedBtnClassNames.includes(`edit`)) {
         document.querySelector(`#add-edu-btn`).textContent = `Confirm Edits`;
+        // eslint-disable-next-line
         this.state.userEducation.filter((edu) => {
           if (edu.id === selectedID) {
             this.setState({
@@ -396,6 +396,7 @@ class App extends Component {
         });
       }
       this.setState({
+        // eslint-disable-next-line
         userEducation: this.state.userEducation.filter((edu) => {
           if (edu.id !== selectedID) {
             return edu;
@@ -445,13 +446,6 @@ class App extends Component {
                 userEducation={this.state.userEducation}
                 handleModifications={this.handleModifications}
               />
-              {/* <RenderPDF
-                state={this.state}
-                handleModifications={this.handleModifications}
-              ></RenderPDF> */}
-              {/* <button id="generate-pdf" onClick={renderPdfOnClick}>
-                Generate PDF
-              </button> */}
             </div>
           </div>
         </div>
@@ -460,48 +454,5 @@ class App extends Component {
     );
   }
 }
-
-// // const RenderPDF = () => {
-// // Create styles
-// const styles = StyleSheet.create({
-//   page: {
-//     flexDirection: "row",
-//     backgroundColor: "#E4E4E4",
-//   },
-//   section: {
-//     margin: 10,
-//     padding: 10,
-//     flexGrow: 1,
-//   },
-// });
-
-// // Create Document Component
-// const MyDocument = () => {
-//   console.log(`click`);
-//   return (
-//     <Document>
-//       <Page size="A4" style={styles.page}>
-//         <View style={styles.section}>
-//           {/* <Text>Section #1</Text> */}
-//           {/* <Contact></Contact> */}
-//         </View>
-//         <View style={styles.section}>
-//           <Text>Section #2</Text>
-//         </View>
-//       </Page>
-//     </Document>
-//   );
-// };
-
-// const ViewPDF = () => (
-//   <PDFViewer>
-//     <MyDocument />
-//   </PDFViewer>
-// );
-
-// const renderPdfOnClick = () => {
-//   ReactDOM.render(<ViewPDF />, document.getElementById("root"));
-// };
-// // };
 
 export default App;
