@@ -2,7 +2,7 @@
 
 this is the [first react project](https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript/lessons/cv-application) from the odin project's full stack javascript curriculum.
 
-![gif demonstrating the app's features](./todo-demo.gif)
+![gif demonstrating the app's features](./cv-demo.gif)
 
 ## project objectives
 
