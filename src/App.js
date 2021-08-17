@@ -5,7 +5,7 @@ import Contact from "./components/Contact";
 import Experience from "./components/Experience";
 import Education from "./components/Education";
 import Preview from "./components/Preview";
-// import RenderPDF from "./components/RenderPDF";
+import { HandlePdfState } from "./components/RenderPDF";
 import React, { Component } from "react";
 import uniqid from "uniqid";
 import { compareDesc } from "date-fns";
@@ -446,6 +446,7 @@ class App extends Component {
                 userEducation={this.state.userEducation}
                 handleModifications={this.handleModifications}
               />
+              <HandlePdfState state={this.state}></HandlePdfState>
             </div>
           </div>
         </div>
