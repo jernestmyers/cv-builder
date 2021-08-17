@@ -33,4 +33,4 @@ this is the [first react project](https://www.theodinproject.com/paths/full-stac
 
 ## live version
 
-[click here](https://jernestmyers.github.io/cv-builder/) for a live version!
+[click here](https://jernestmyers.github.io/cv-project/) for a live version!
