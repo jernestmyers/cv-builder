@@ -4,6 +4,10 @@ this is the [first react project](https://www.theodinproject.com/paths/full-stac
 
 ![gif demonstrating the app's features](./cv-demo.gif)
 
+## live version
+
+[click here](https://jernestmyers.github.io/cv-project/) for a live version!
+
 ## project objectives
 
 1. create sections to input general information, educational experience, and professional experience.
@@ -30,7 +34,3 @@ this is the [first react project](https://www.theodinproject.com/paths/full-stac
 
 1. thus far has only been formatted to display effectively on my 13" macbook air.
 2. the "Generate PDF" functionality has not been completed. erroneously expected to be able to use existing components to easily generate the PDF.
-
-## live version
-
-[click here](https://jernestmyers.github.io/cv-project/) for a live version!
