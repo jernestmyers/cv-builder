@@ -9,6 +9,7 @@ import { HandlePdfState } from "./components/RenderPDF";
 import React, { Component } from "react";
 import uniqid from "uniqid";
 import { compareDesc } from "date-fns";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function createDateObject(dateSelected) {
   const inputDate = dateSelected;
@@ -53,209 +54,30 @@ class App extends Component {
   }
 
   handleContactChange = (e) => {
-    if (e.target.id === `fullName`) {
-      this.setState({
-        contact: {
-          fullName: e.target.value,
-          phoneNumber: this.state.contact.phoneNumber,
-          address: this.state.contact.address,
-          email: this.state.contact.email,
-          portfolio: this.state.contact.portfolio,
-          linkedIn: this.state.contact.linkedIn,
-          aboutMe: this.state.contact.aboutMe,
-        },
-      });
-    } else if (e.target.id === `phoneNumber`) {
-      this.setState({
-        contact: {
-          fullName: this.state.contact.fullName,
-          phoneNumber: e.target.value,
-          address: this.state.contact.address,
-          email: this.state.contact.email,
-          portfolio: this.state.contact.portfolio,
-          linkedIn: this.state.contact.linkedIn,
-          aboutMe: this.state.contact.aboutMe,
-        },
-      });
-    } else if (e.target.id === `address`) {
-      this.setState({
-        contact: {
-          fullName: this.state.contact.fullName,
-          phoneNumber: this.state.contact.phoneNumber,
-          address: e.target.value,
-          email: this.state.contact.email,
-          portfolio: this.state.contact.portfolio,
-          linkedIn: this.state.contact.linkedIn,
-          aboutMe: this.state.contact.aboutMe,
-        },
-      });
-    } else if (e.target.id === `email`) {
-      this.setState({
-        contact: {
-          fullName: this.state.contact.fullName,
-          phoneNumber: this.state.contact.phoneNumber,
-          address: this.state.contact.address,
-          email: e.target.value,
-          portfolio: this.state.contact.portfolio,
-          linkedIn: this.state.contact.linkedIn,
-          aboutMe: this.state.contact.aboutMe,
-        },
-      });
-    } else if (e.target.id === `portfolio`) {
-      this.setState({
-        contact: {
-          fullName: this.state.contact.fullName,
-          phoneNumber: this.state.contact.phoneNumber,
-          address: this.state.contact.address,
-          email: this.state.contact.email,
-          portfolio: e.target.value,
-          linkedIn: this.state.contact.linkedIn,
-          aboutMe: this.state.contact.aboutMe,
-        },
-      });
-    } else if (e.target.id === `linkedIn`) {
-      this.setState({
-        contact: {
-          fullName: this.state.contact.fullName,
-          phoneNumber: this.state.contact.phoneNumber,
-          address: this.state.contact.address,
-          email: this.state.contact.email,
-          portfolio: this.state.contact.portfolio,
-          linkedIn: e.target.value,
-          aboutMe: this.state.contact.aboutMe,
-        },
-      });
-    } else if (e.target.id === `aboutMe`) {
-      this.setState({
-        contact: {
-          fullName: this.state.contact.fullName,
-          phoneNumber: this.state.contact.phoneNumber,
-          address: this.state.contact.address,
-          email: this.state.contact.email,
-          portfolio: this.state.contact.portfolio,
-          linkedIn: this.state.contact.linkedIn,
-          aboutMe: e.target.value,
-        },
-      });
-    }
+    this.setState((prevState) => ({
+      contact: {
+        ...prevState.contact,
+        [`${e.target.id}`]: e.target.value,
+      },
+    }));
   };
 
   handleExperienceChange = (e) => {
-    if (e.target.id === `position`) {
-      this.setState({
-        experience: {
-          id: this.state.experience.id,
-          jobTitle: e.target.value,
-          company: this.state.experience.company,
-          jobLocation: this.state.experience.jobLocation,
-          jobStartDate: this.state.experience.jobStartDate,
-          jobEndDate: this.state.experience.jobEndDate,
-        },
-      });
-    } else if (e.target.id === `company`) {
-      this.setState({
-        experience: {
-          id: this.state.experience.id,
-          jobTitle: this.state.experience.jobTitle,
-          company: e.target.value,
-          jobLocation: this.state.experience.jobLocation,
-          jobStartDate: this.state.experience.jobStartDate,
-          jobEndDate: this.state.experience.jobEndDate,
-        },
-      });
-    } else if (e.target.id === `location`) {
-      this.setState({
-        experience: {
-          id: this.state.experience.id,
-          jobTitle: this.state.experience.jobTitle,
-          company: this.state.experience.company,
-          jobLocation: e.target.value,
-          jobStartDate: this.state.experience.jobStartDate,
-          jobEndDate: this.state.experience.jobEndDate,
-        },
-      });
-    } else if (e.target.id === `startDate`) {
-      this.setState({
-        experience: {
-          id: this.state.experience.id,
-          jobTitle: this.state.experience.jobTitle,
-          company: this.state.experience.company,
-          jobLocation: this.state.experience.jobLocation,
-          jobStartDate: e.target.value,
-          jobEndDate: this.state.experience.jobEndDate,
-        },
-      });
-    } else if (e.target.id === `endDate`) {
-      this.setState({
-        experience: {
-          id: this.state.experience.id,
-          jobTitle: this.state.experience.jobTitle,
-          company: this.state.experience.company,
-          jobLocation: this.state.experience.jobLocation,
-          jobStartDate: this.state.experience.jobStartDate,
-          jobEndDate: e.target.value,
-        },
-      });
-    }
+    this.setState((prevState) => ({
+      experience: {
+        ...prevState.experience,
+        [`${e.target.id}`]: e.target.value,
+      },
+    }));
   };
 
   handleEducationChange = (e) => {
-    if (e.target.id === `institution`) {
-      this.setState({
-        education: {
-          id: this.state.education.id,
-          institution: e.target.value,
-          eduLocation: this.state.education.eduLocation,
-          attainment: this.state.education.attainment,
-          eduStartDate: this.state.education.eduStartDate,
-          eduEndDate: this.state.education.eduEndDate,
-        },
-      });
-    } else if (e.target.id === `eduLocation`) {
-      this.setState({
-        education: {
-          id: this.state.education.id,
-          institution: this.state.education.institution,
-          eduLocation: e.target.value,
-          attainment: this.state.education.attainment,
-          eduStartDate: this.state.education.eduStartDate,
-          eduEndDate: this.state.education.eduEndDate,
-        },
-      });
-    } else if (e.target.id === `attainment`) {
-      this.setState({
-        education: {
-          id: this.state.education.id,
-          institution: this.state.education.institution,
-          eduLocation: this.state.education.eduLocation,
-          attainment: e.target.value,
-          eduStartDate: this.state.education.eduStartDate,
-          eduEndDate: this.state.education.eduEndDate,
-        },
-      });
-    } else if (e.target.id === `eduStartDate`) {
-      this.setState({
-        education: {
-          id: this.state.education.id,
-          institution: this.state.education.institution,
-          eduLocation: this.state.education.eduLocation,
-          attainment: this.state.education.attainment,
-          eduStartDate: e.target.value,
-          eduEndDate: this.state.education.eduEndDate,
-        },
-      });
-    } else if (e.target.id === `eduEndDate`) {
-      this.setState({
-        education: {
-          id: this.state.education.id,
-          institution: this.state.education.institution,
-          eduLocation: this.state.education.eduLocation,
-          attainment: this.state.education.attainment,
-          eduStartDate: this.state.education.eduStartDate,
-          eduEndDate: e.target.value,
-        },
-      });
-    }
+    this.setState((prevState) => ({
+      education: {
+        ...prevState.education,
+        [`${e.target.id}`]: e.target.value,
+      },
+    }));
   };
 
   handleAddExperience = (e) => {
@@ -272,7 +94,6 @@ class App extends Component {
 
     if (isValid) {
       this.setState({
-        // userExperience: this.state.userExperience.concat(this.state.experience),
         userExperience: this.state.userExperience
           .concat(this.state.experience)
           .map((job) => {
@@ -285,7 +106,6 @@ class App extends Component {
             );
           }),
       });
-      // console.log(this.state.userExperience);
 
       this.setState({
         experience: {
@@ -314,7 +134,6 @@ class App extends Component {
     validateForm();
     if (isValid) {
       this.setState({
-        // userEducation: this.state.userEducation.concat(this.state.education),
         userEducation: this.state.userEducation
           .concat(this.state.education)
           .map((edu) => {
@@ -408,50 +227,60 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Header />
-        <div className="mainDisplay">
-          <div className="inputFields">
-            <Contact
-              state={this.state.contact}
-              onChange={this.handleContactChange}
-            />
-            <div id="experience-container">
-              <Experience
-                state={this.state.experience}
-                onChange={this.handleExperienceChange}
+      <Router>
+        <div>
+          <Header />
+          <div className="mainDisplay">
+            <div className="inputFields">
+              <Contact
+                state={this.state.contact}
+                onChange={this.handleContactChange}
               />
-              <button id="add-exp-btn" onClick={this.handleAddExperience}>
-                Add Experience
-              </button>
+              <div id="experience-container">
+                <Experience
+                  state={this.state.experience}
+                  onChange={this.handleExperienceChange}
+                />
+                <button id="add-exp-btn" onClick={this.handleAddExperience}>
+                  Add Experience
+                </button>
+              </div>
+              <div>
+                <Education
+                  state={this.state.education}
+                  onChange={this.handleEducationChange}
+                />
+                <button id="add-edu-btn" onClick={this.handleAddEducation}>
+                  Add Education
+                </button>
+              </div>
             </div>
             <div>
-              <Education
-                state={this.state.education}
-                onChange={this.handleEducationChange}
-              />
-              <button id="add-edu-btn" onClick={this.handleAddEducation}>
-                Add Education
-              </button>
+              <h2>Live Preview</h2>
+              <div className="previewOfCV">
+                <Preview
+                  contact={this.state.contact}
+                  experience={this.state.experience}
+                  education={this.state.education}
+                  userExperience={this.state.userExperience}
+                  userEducation={this.state.userEducation}
+                  handleModifications={this.handleModifications}
+                />
+                {/* <Routes>
+                  <Route
+                    path="/pdf"
+                    element={
+                      <HandlePdfState state={this.state}></HandlePdfState>
+                    }
+                  ></Route>
+                </Routes> */}
+                <HandlePdfState state={this.state}></HandlePdfState>
+              </div>
             </div>
           </div>
-          <div>
-            <h2>Live Preview</h2>
-            <div className="previewOfCV">
-              <Preview
-                contact={this.state.contact}
-                experience={this.state.experience}
-                education={this.state.education}
-                userExperience={this.state.userExperience}
-                userEducation={this.state.userEducation}
-                handleModifications={this.handleModifications}
-              />
-              <HandlePdfState state={this.state}></HandlePdfState>
-            </div>
-          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
+      </Router>
     );
   }
 }

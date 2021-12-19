@@ -33,21 +33,6 @@ const Preview = (props) => {
   const formattedPhoneNumber = phoneNumber.toString().replaceAll(`,`, ``);
   const phoneHref = `tel:${formattedPhoneNumber}`;
 
-  // const formatDate = (dateSelected) => {
-  //   if (dateSelected) {
-  //     const inputDate = dateSelected;
-  //     const today = format(new Date(), "yyyy-MM-dd");
-  //     const year = +inputDate.substring(0, 4);
-  //     const month = +inputDate.substring(5, 7) - 1;
-  //     const day = +inputDate.substring(8, 10);
-  //     if (today !== inputDate) {
-  //       return format(new Date(year, month, day), "MMM yyyy");
-  //     } else {
-  //       return `Present`;
-  //     }
-  //   }
-  // };
-
   return (
     <div>
       <div id="contact-preview-container">
@@ -151,18 +136,6 @@ const Preview = (props) => {
       </div>
       <div id="experience-preview-container">
         <h3 id="experience-header">Professional Experience</h3>
-        {/* <div className="display-experience-container">
-          <div className="date-container">
-            {formatDate(props.experience.jobStartDate)} to{" "}
-            {formatDate(props.experience.jobEndDate)}
-          </div>
-          <div className="company-info-container">
-            <p className="display-position">{props.experience.jobTitle}</p>
-            <p className="display-company-info">
-              {props.experience.company} | {props.experience.jobLocation}
-            </p>
-          </div>
-        </div> */}
         <LivePreviewExperience state={props.experience}></LivePreviewExperience>
         <DisplayExperience
           state={props.userExperience}
@@ -171,21 +144,6 @@ const Preview = (props) => {
       </div>
       <div id="edu-preview-container">
         <h3 id="edu-header">Education</h3>
-        {/* <div className="display-education-container">
-          <div className="date-container">
-            {formatDate(props.education.eduStartDate)} to{" "}
-            {formatDate(props.education.eduEndDate)}
-          </div>
-          <div>
-            <p className="display-institution-info">
-              <span className="display-institution">
-                {props.education.institution}
-              </span>{" "}
-              | {props.education.eduLocation}
-            </p>
-            <p>{props.education.attainment}</p>
-          </div>
-        </div> */}
         <LivePreviewEducation state={props.education}></LivePreviewEducation>
         <DisplayEducation
           state={props.userEducation}
