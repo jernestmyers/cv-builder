@@ -9,7 +9,7 @@ import { HandlePdfState } from "./components/RenderPDF";
 import React, { Component } from "react";
 import uniqid from "uniqid";
 import { compareDesc } from "date-fns";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function createDateObject(dateSelected) {
   const inputDate = dateSelected;
@@ -228,58 +228,72 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
-          <Header />
-          <div className="mainDisplay">
-            <div className="inputFields">
-              <Contact
-                state={this.state.contact}
-                onChange={this.handleContactChange}
-              />
-              <div id="experience-container">
-                <Experience
-                  state={this.state.experience}
-                  onChange={this.handleExperienceChange}
-                />
-                <button id="add-exp-btn" onClick={this.handleAddExperience}>
-                  Add Experience
-                </button>
-              </div>
+        <Routes>
+          <Route
+            path="/cv-project/"
+            element={
               <div>
-                <Education
-                  state={this.state.education}
-                  onChange={this.handleEducationChange}
-                />
-                <button id="add-edu-btn" onClick={this.handleAddEducation}>
-                  Add Education
-                </button>
+                <Header />
+                <div className="mainDisplay">
+                  <div className="inputFields">
+                    <Contact
+                      state={this.state.contact}
+                      onChange={this.handleContactChange}
+                    />
+                    <div id="experience-container">
+                      <Experience
+                        state={this.state.experience}
+                        onChange={this.handleExperienceChange}
+                      />
+                      <button
+                        id="add-exp-btn"
+                        onClick={this.handleAddExperience}
+                      >
+                        Add Experience
+                      </button>
+                    </div>
+                    <div>
+                      <Education
+                        state={this.state.education}
+                        onChange={this.handleEducationChange}
+                      />
+                      <button
+                        id="add-edu-btn"
+                        onClick={this.handleAddEducation}
+                      >
+                        Add Education
+                      </button>
+                    </div>
+                  </div>
+                  <div>
+                    <h2>Live Preview</h2>
+                    <div className="previewOfCV">
+                      <Preview
+                        contact={this.state.contact}
+                        experience={this.state.experience}
+                        education={this.state.education}
+                        userExperience={this.state.userExperience}
+                        userEducation={this.state.userEducation}
+                        handleModifications={this.handleModifications}
+                      />
+
+                      <Link to="/cv-project/pdf">
+                        <HandlePdfState state={this.state}></HandlePdfState>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+                <Footer />
               </div>
-            </div>
-            <div>
-              <h2>Live Preview</h2>
-              <div className="previewOfCV">
-                <Preview
-                  contact={this.state.contact}
-                  experience={this.state.experience}
-                  education={this.state.education}
-                  userExperience={this.state.userExperience}
-                  userEducation={this.state.userEducation}
-                  handleModifications={this.handleModifications}
-                />
-                {/* <Routes>
-                  <Route
-                    path="/pdf"
-                    element={
-                      <HandlePdfState state={this.state}></HandlePdfState>
-                    }
-                  ></Route>
-                </Routes> */}
-                <HandlePdfState state={this.state}></HandlePdfState>
-              </div>
-            </div>
-          </div>
-          <Footer />
-        </div>
+            }
+          ></Route>
+        </Routes>
+        <Routes>
+          <Route
+            path="/cv-project/pdf"
+            element={<HandlePdfState state={this.state}></HandlePdfState>}
+          ></Route>
+        </Routes>
       </Router>
     );
   }
