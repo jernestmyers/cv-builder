@@ -170,7 +170,7 @@ class App extends Component {
       if (selectedBtnClassNames.includes(`edit`)) {
         document.querySelector(`#add-exp-btn`).textContent = `Confirm Edits`;
         // eslint-disable-next-line
-        this.state.userExperience.filter((job) => {
+        this.state.userExperience.map((job) => {
           if (job.id === selectedID) {
             this.setState({
               experience: {
@@ -187,11 +187,9 @@ class App extends Component {
       }
       this.setState({
         // eslint-disable-next-line
-        userExperience: this.state.userExperience.filter((job) => {
-          if (job.id !== selectedID) {
-            return job;
-          }
-        }),
+        userExperience: this.state.userExperience.filter(
+          (job) => job.id !== selectedID
+        ),
       });
     }
     // handles editing and deleting education objects in CV
@@ -199,7 +197,7 @@ class App extends Component {
       if (selectedBtnClassNames.includes(`edit`)) {
         document.querySelector(`#add-edu-btn`).textContent = `Confirm Edits`;
         // eslint-disable-next-line
-        this.state.userEducation.filter((edu) => {
+        this.state.userEducation.map((edu) => {
           if (edu.id === selectedID) {
             this.setState({
               education: {
@@ -216,11 +214,9 @@ class App extends Component {
       }
       this.setState({
         // eslint-disable-next-line
-        userEducation: this.state.userEducation.filter((edu) => {
-          if (edu.id !== selectedID) {
-            return edu;
-          }
-        }),
+        userEducation: this.state.userEducation.filter(
+          (edu) => edu.id !== selectedID
+        ),
       });
     }
   };
