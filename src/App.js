@@ -228,7 +228,7 @@ class App extends Component {
           <Route
             path="/cv-project/"
             element={
-              <div>
+              <>
                 <Header />
                 <div className="mainDisplay">
                   <div className="inputFields">
@@ -280,7 +280,7 @@ class App extends Component {
                   </div>
                 </div>
                 <Footer />
-              </div>
+              </>
             }
           ></Route>
         </Routes>
