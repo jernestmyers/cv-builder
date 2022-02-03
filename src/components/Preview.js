@@ -1,22 +1,7 @@
 import "../styles/contact-style.css";
-import { format } from "date-fns";
 import DisplayExperience from "./DisplayExperience";
 import DisplayEducation from "./DisplayEducation";
-
-const formatDate = (dateSelected) => {
-  if (dateSelected) {
-    const inputDate = dateSelected;
-    const today = format(new Date(), "yyyy-MM-dd");
-    const year = +inputDate.substring(0, 4);
-    const month = +inputDate.substring(5, 7) - 1;
-    const day = +inputDate.substring(8, 10);
-    if (today !== inputDate) {
-      return format(new Date(year, month, day), "MMM yyyy");
-    } else {
-      return `Present`;
-    }
-  }
-};
+import { formatDate } from "../utils/dateHelpers";
 
 const Preview = (props) => {
   const emailHref = `mailto:${props.contact.email}`;

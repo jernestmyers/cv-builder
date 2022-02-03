@@ -9,15 +9,8 @@ import { HandlePdfState } from "./components/RenderPDF";
 import React, { Component } from "react";
 import uniqid from "uniqid";
 import { compareDesc } from "date-fns";
+import { createDateObject } from "./utils/dateHelpers";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-
-function createDateObject(dateSelected) {
-  const inputDate = dateSelected;
-  const year = +inputDate.substring(0, 4);
-  const month = +inputDate.substring(5, 7) - 1;
-  const day = +inputDate.substring(8, 10);
-  return new Date(year, month, day);
-}
 
 class App extends Component {
   constructor() {
