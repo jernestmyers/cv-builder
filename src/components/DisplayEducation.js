@@ -17,7 +17,7 @@ const DisplayEducation = (props) => {
               </p>
               <p>{job.attainment}</p>
             </div>
-            {props.pathname === "/cv-project" ? (
+            {props.pathname === "/cv-project/" ? (
               <div className="btns-container">
                 <button
                   className="modify-btns edit-btn edit-education"

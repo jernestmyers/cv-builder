@@ -16,7 +16,7 @@ const DisplayExperience = (props) => {
                 {job.company} | {job.jobLocation}
               </p>
             </div>
-            {props.pathname === "/cv-project" ? (
+            {props.pathname === "/cv-project/" ? (
               <div className="btns-container">
                 <button
                   className="modify-btns edit-btn edit-experience"
