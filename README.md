@@ -13,7 +13,7 @@ this is the [first react project](https://www.theodinproject.com/paths/full-stac
 1. create sections to input general information, educational experience, and professional experience.
 2. create functionality to remove and/or edit inputted data.
 3. create functionality to display inputted data in a stylized format.
-4. personal objective: leverage a package like react-pdf to generate a PDF of the CV.
+4. leverage a package to generate a PDF of the CV.
 
 ## technologies used
 
