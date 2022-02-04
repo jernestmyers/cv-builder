@@ -2,8 +2,10 @@ import "../styles/contact-style.css";
 import DisplayExperience from "./DisplayExperience";
 import DisplayEducation from "./DisplayEducation";
 import { formatDate } from "../utils/dateHelpers";
+import { useLocation } from "react-router-dom";
 
 const Preview = (props) => {
+  const pathname = useLocation().pathname;
   const emailHref = `mailto:${props.contact.email}`;
 
   // formats phone number for use as href
@@ -124,6 +126,7 @@ const Preview = (props) => {
         <LivePreviewExperience state={props.experience}></LivePreviewExperience>
         <DisplayExperience
           state={props.userExperience}
+          pathname={pathname}
           handleModifications={props.handleModifications}
         />
       </div>
@@ -132,6 +135,7 @@ const Preview = (props) => {
         <LivePreviewEducation state={props.education}></LivePreviewEducation>
         <DisplayEducation
           state={props.userEducation}
+          pathname={pathname}
           handleModifications={props.handleModifications}
         />
       </div>

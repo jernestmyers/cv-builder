@@ -5,7 +5,7 @@ import Contact from "./components/Contact";
 import Experience from "./components/Experience";
 import Education from "./components/Education";
 import Preview from "./components/Preview";
-import { HandlePdfState } from "./components/RenderPDF";
+import { RenderPDF } from "./components/RenderPDF";
 import React, { Component } from "react";
 import uniqid from "uniqid";
 import { compareDesc } from "date-fns";
@@ -219,7 +219,7 @@ class App extends Component {
       <Router>
         <Routes>
           <Route
-            path="/cv-project/"
+            path="/cv-project"
             element={
               <>
                 <Header />
@@ -265,9 +265,8 @@ class App extends Component {
                         userEducation={this.state.userEducation}
                         handleModifications={this.handleModifications}
                       />
-
                       <Link to="/cv-project/pdf">
-                        <HandlePdfState state={this.state}></HandlePdfState>
+                        <button>Generate PDF</button>
                       </Link>
                     </div>
                   </div>
@@ -276,11 +275,18 @@ class App extends Component {
               </>
             }
           ></Route>
-        </Routes>
-        <Routes>
           <Route
             path="/cv-project/pdf"
-            element={<HandlePdfState state={this.state}></HandlePdfState>}
+            element={
+              <RenderPDF
+                contact={this.state.contact}
+                experience={this.state.experience}
+                education={this.state.education}
+                userExperience={this.state.userExperience}
+                userEducation={this.state.userEducation}
+                handleModifications={this.handleModifications}
+              ></RenderPDF>
+            }
           ></Route>
         </Routes>
       </Router>
